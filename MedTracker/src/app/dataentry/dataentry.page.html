@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Hemograma</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Fecha Examen</ion-label>
+        <ion-datetime-button  datetime="datetime"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime id="datetime" [(ngModel)]="fecha" #datetime presentation="date" locale="es-ES" [firstDayOfWeek]="1" [showDefaultButtons]="true" (ionChange)="processFecha()">
+            </ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+      <ion-item>
+        <ion-input label="VCM" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="HCM" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="test" value="{{fechaFormateada}}"></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
