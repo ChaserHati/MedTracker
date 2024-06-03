@@ -14,17 +14,15 @@
   </ion-header>
   <div id="container">
     <ion-item>
-      <ion-input label="Nombre de Usuario" label-placement="stacked">
-
+      <ion-input label="Nombre de Usuario" label-placement="stacked" [(ngModel)]="username" required>
       </ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="password" label="Contraseña" label-placement="stacked">
-        <ion-input-password-toggle slot="end">
-        </ion-input-password-toggle>
+      <ion-input type="password" label="Contraseña" label-placement="stacked" required>
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
       </ion-input>
     </ion-item>
-    <ion-button [routerLink]="['/user']">Ingresar</ion-button>
+    <ion-button (click)="enviarDatos()">Ingresar</ion-button>
     <br>
     <ion-text button>
       Crear nueva cuenta

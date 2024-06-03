@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Chart } from 'chart.js/auto';
 
@@ -16,7 +17,21 @@ export class ChartPage implements AfterViewInit {
   
   valores: number[] = [79.2,78.6,79.6,76.7,78.2, 77.9, 77.6];
 
-  constructor() { }
+  fechaNew!: string;
+  vcmNew!: number;
+
+  constructor(private activerouter: ActivatedRoute, private router: Router) {
+    this.activerouter.queryParams.subscribe(params =>{
+      if(this.router.getCurrentNavigation()?.extras?.state){
+        this.fechaNew = this.router.getCurrentNavigation()?.extras?.state?.['fechaNew'];
+        this.vcmNew = this.router.getCurrentNavigation()?.extras?.state?.['vcmNew'];
+        this.fechas.push(this.fechaNew);
+        this.valores.push(this.vcmNew);
+      }
+    }
+
+    )
+   }
 
   ngAfterViewInit() {
     this.lineChartMethod();
@@ -29,24 +44,18 @@ export class ChartPage implements AfterViewInit {
         datasets: [
           {
             label: 'VCM',
-            fill: false,
-            backgroundColor: 'rgba(75,192,192,0.4)',
-            borderColor: 'rgba(75,192,192,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,192,192,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-            pointHoverBorderColor: 'rgba(220,220,220,1)',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
             data: this.valores,
-            spanGaps: false,
+            borderColor: "blue",
+          },
+          {
+            label: 'Rango Mínimo Saludable',
+            data: Array.from(this.valores).fill(80),
+            borderColor: "red"
+          },
+          {
+            label: 'Rango Máximo Saludable',
+            data: Array.from(this.valores).fill(100),
+            borderColor: "red"
           }
         ]
       }

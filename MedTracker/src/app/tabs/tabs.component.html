@@ -1,19 +1,19 @@
 <div>
 <ion-tabs>
-  <ion-tab-bar id="tabs" slot="bottom">
-    <ion-tab-button tab="home">
+  <ion-tab-bar id="tabs" slot="bottom" *ngIf="currentPage!='/'&&currentPage!='/login'">
+    <ion-tab-button (click)="playA()" tab="home">
       <ion-icon name="home"></ion-icon>
-      Feed
+      Inicio
     </ion-tab-button>
-    <ion-tab-button tab="dataentry">
+    <ion-tab-button (click)="playB()" tab="dataentry">
       <ion-icon name="add-circle"></ion-icon>
       Nuevo
     </ion-tab-button>
-    <ion-tab-button tab="chart">
+    <ion-tab-button (click)="playC()" tab="chart">
       <ion-icon name="analytics"></ion-icon>
       Gráficos
     </ion-tab-button>
-    <ion-tab-button tab="user">
+    <ion-tab-button (click)="playD()" tab="user">
       <ion-icon name="person-circle"></ion-icon>
       Perfil
     </ion-tab-button>

@@ -15,9 +15,13 @@
 
   <div id="container">
     <ion-list>
-      <ion-list-header>
-        <ion-label>Hemograma</ion-label>
-      </ion-list-header>
+      <ion-item>
+        <ion-select label="Tipo de Exámen" [(ngModel)]="tipoExamen">
+          <ion-select-option value="hemograma">Hemograma</ion-select-option>
+          <ion-select-option value="">Placeholder1</ion-select-option>
+          <ion-select-option value="">Placeholder2</ion-select-option>
+        </ion-select>
+      </ion-item>
       <ion-item>
         <ion-label>Fecha Examen</ion-label>
         <ion-datetime-button  datetime="datetime"></ion-datetime-button>
@@ -28,15 +32,19 @@
           </ng-template>
         </ion-modal>
       </ion-item>
-      <ion-item>
-        <ion-input label="VCM" type="number"></ion-input>
+      <ion-item *ngIf="tipoExamen=='hemograma'" disabled="true">
+        <ion-input label="Recuento de Eritrocitos" type="number"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-input label="HCM" type="number"></ion-input>
+      <ion-item *ngIf="tipoExamen=='hemograma'" disabled="true">
+        <ion-input label="Hematocrito" type="number"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-input label="test" value="{{fechaFormateada}}"></ion-input>
+      <ion-item *ngIf="tipoExamen=='hemograma'" disabled="true">
+        <ion-input label="Hemoglobina" type="number"></ion-input>
       </ion-item>
+      <ion-item *ngIf="tipoExamen=='hemograma'">
+        <ion-input label="VCM" type="number" [(ngModel)]="valueVCM"></ion-input>
+      </ion-item>
+      <ion-button (click)="enviarDatos()">Agregar</ion-button>
     </ion-list>
   </div>
 </ion-content>
