@@ -62,7 +62,7 @@ export class TabsComponent  implements AfterViewInit {
       { offset: 0.66, transform: 'translate(-10px)'},
       { offset: 1, transform: 'translate(0px)'}
     ]);
-    }, 1000);
+    }, 2000);
 
     
   }

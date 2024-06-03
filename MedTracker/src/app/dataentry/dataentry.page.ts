@@ -9,7 +9,7 @@ import { NavigationExtras, Router } from '@angular/router';
 export class DataentryPage implements OnInit {
   public fecha!: string;
   fechaFormateada!: string;
-  valueVCM: number = 0;
+  valueVCM!: number;
 
   tipoExamen!: string;
   

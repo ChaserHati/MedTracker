@@ -27,6 +27,7 @@ export class ChartPage implements AfterViewInit {
         this.vcmNew = this.router.getCurrentNavigation()?.extras?.state?.['vcmNew'];
         this.fechas.push(this.fechaNew);
         this.valores.push(this.vcmNew);
+        this.ngAfterViewInit();
       }
     }
 
