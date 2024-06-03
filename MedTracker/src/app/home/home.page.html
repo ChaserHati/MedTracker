@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Inicio
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,12 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Inicio</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <ion-card color="warning">
+    <ion-card *ngIf="inRangeVCM==false" color="warning">
       <ion-card-content>
         Tu último resultado de VCM esta fuera del rango esperado. Recuerda consultar a tu doctor.
       </ion-card-content>
