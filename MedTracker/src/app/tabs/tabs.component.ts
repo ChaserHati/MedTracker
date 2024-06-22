@@ -10,16 +10,10 @@ import { AnimationController, IonTabButton } from '@ionic/angular';
   styleUrls: ['./tabs.component.scss'],
 })
 export class TabsComponent  implements AfterViewInit {
-  @ViewChildren(IonTabButton, {read: ElementRef}) tabButtons: QueryList<ElementRef<HTMLIonTabButtonElement>> | any;
 
   currentPage: string = "/"
 
-  private animationA!: Animation;
-  private animationB!: Animation;
-  private animationC!: Animation;
-  private animationD!: Animation;
-
-  constructor(private router: Router, private animationCtrl: AnimationController) { 
+  constructor(private router: Router) { 
     this.router.events.subscribe((e)=>{
       if(e instanceof NavigationEnd){
         this.currentPage = e.url;
@@ -32,51 +26,5 @@ export class TabsComponent  implements AfterViewInit {
   ngOnInit() {}
 
   ngAfterViewInit(){
-
-    setTimeout(() => {
-      this.animationA = this.animationCtrl.create().addElement(this.tabButtons.get(0).nativeElement).duration(500).iterations(1).
-    keyframes([
-      { offset: 0, transform: 'translate(0px)'},
-      { offset: 0.33, transform: 'translate(10px)'},
-      { offset: 0.66, transform: 'translate(-10px)'},
-      { offset: 1, transform: 'translate(0px)'}
-    ]);
-    this.animationB = this.animationCtrl.create().addElement(this.tabButtons.get(1).nativeElement).duration(500).iterations(1).
-    keyframes([
-      { offset: 0, transform: 'translate(0px)'},
-      { offset: 0.33, transform: 'translate(10px)'},
-      { offset: 0.66, transform: 'translate(-10px)'},
-      { offset: 1, transform: 'translate(0px)'}
-    ]);
-    this.animationC = this.animationCtrl.create().addElement(this.tabButtons.get(2).nativeElement).duration(500).iterations(1).
-    keyframes([
-      { offset: 0, transform: 'translate(0px)'},
-      { offset: 0.33, transform: 'translate(10px)'},
-      { offset: 0.66, transform: 'translate(-10px)'},
-      { offset: 1, transform: 'translate(0px)'}
-    ]);
-    this.animationD = this.animationCtrl.create().addElement(this.tabButtons.get(3).nativeElement).duration(500).iterations(1).
-    keyframes([
-      { offset: 0, transform: 'translate(0px)'},
-      { offset: 0.33, transform: 'translate(10px)'},
-      { offset: 0.66, transform: 'translate(-10px)'},
-      { offset: 1, transform: 'translate(0px)'}
-    ]);
-    }, 2000);
-
-    
-  }
-
-  playA(){
-    this.animationA.play();
-  }
-  playB(){
-    this.animationB.play();
-  }
-  playC(){
-    this.animationC.play();
-  }
-  playD(){
-    this.animationD.play();
   }
 }
