@@ -1,0 +1,11 @@
+{
+    "examen": [
+      {
+        "name": "vcm",
+        "min": 80,
+        "max": 100
+      }
+    ],
+    "placeholder": {
+    }
+  }

@@ -35,8 +35,6 @@ export class ChartPage implements OnInit {
         this.dbService.fetchHemograma().subscribe(item=>{
           this.arregloHemograma = item;
           this.llenar();
-          this.llenarMin();
-          this.llenarMax();
         })
       }
     });
@@ -51,25 +49,36 @@ export class ChartPage implements OnInit {
     for(let x of this.arregloHemograma){
       this.fechas.push(x.fecha)
     }
+    return true;
   }
 
   llenarValores(){
     for(let x of this.arregloHemograma){
       this.valores.push(x.vcm)
     }
+    return true;
   }
 
   llenarMin(){
     this.min = Array.from(this.valores).fill(80);
+    return true;
   }
 
   llenarMax(){
     this.max = Array.from(this.valores).fill(100);
+    return true;
   }
 
   llenar(){
-    this.llenarFechas();
-    this.llenarValores();
+    if(this.llenarFechas()){
+      if(this.llenarValores()){
+        if(this.llenarMin()){
+          if(this.llenarMax()){
+
+          }
+        }
+      }
+    }
   }
 //
   lineChartMethod() {
