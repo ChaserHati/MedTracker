@@ -16,27 +16,27 @@ export class APIService {
     })
     }
   // Se establece la base url del API a consumir
-  apiURL = 'https://jsonplaceholder.typicode.com';
+  apiURL = 'https://my-json-server.typicode.com/ChaserHati/MedTracker';
  // Se declara la variable http de tipo HttpClient
   constructor(private http:HttpClient) { }
-  //GET
-  getPosts():Observable<any>{ 
-    return this.http.get(this.apiURL+'/posts/').pipe(retry(3));
+  //GET 
+  getExamenes():Observable<any>{ 
+    return this.http.get(this.apiURL+'/examen/').pipe(retry(3));
   }
   //GET Filtrado
-  getPost(id:any):Observable<any>{
-    return this.http.get(this.apiURL+'/posts/'+id).pipe(retry(3)); 
+  getExamen(name:any):Observable<any>{
+    return this.http.get(this.apiURL+'/examen?name='+name+'/').pipe(retry(3)); 
   }
 //POST
-  createPost(post:any):Observable<any>{ 
-    return this.http.post(this.apiURL+'/posts',post,this.httpOptions).pipe(retry(3));
+  createExamen(examen:any):Observable<any>{ 
+    return this.http.post(this.apiURL+'/examen/',examen,this.httpOptions).pipe(retry(3));
   }
   // PUT
-  updatePost(id:any,post:any):Observable<any>{ 
-    return this.http.put(this.apiURL+'/posts/'+id,post,this.httpOptions).pipe(retry(3)); 
+  updateExamen(name:any,post:any):Observable<any>{ 
+    return this.http.put(this.apiURL+'/examen?name='+name,post,this.httpOptions).pipe(retry(3)); 
   }
   //DELETE
-  deletePost(id:any):Observable<any>{ 
-    return this.http.delete(this.apiURL+'/posts/'+id,this.httpOptions);
+  deleteExamen(name:any):Observable<any>{ 
+    return this.http.delete(this.apiURL+'/examen?name='+name,this.httpOptions);
   }
 }

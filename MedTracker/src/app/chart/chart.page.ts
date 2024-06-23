@@ -2,7 +2,7 @@ import { Component, AfterViewInit, ElementRef, ViewChild, OnInit } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Chart } from 'chart.js/auto';
-import { DBService } from '../services/db.service';
+import { APIService } from '../services/api.service';
 
 @Component({
   selector: 'app-chart',
@@ -10,14 +10,14 @@ import { DBService } from '../services/db.service';
   styleUrls: ['./chart.page.scss'],
 })
 export class ChartPage implements OnInit {
-  @ViewChild('lineCanvas') private lineCanvas: ElementRef | any;
+  @ViewChild('lineCanvas') lineCanvas!: ElementRef;
 
   arregloHemograma: any = [{
     fecha: '',
     vcm: 0
   }]
 
-  lineChart: any;
+  private lineChart!: Chart;
 
   fechas: string[] = [];
   
@@ -27,58 +27,25 @@ export class ChartPage implements OnInit {
 
   max: number[] = [];
 
-  constructor(private activerouter: ActivatedRoute, private router: Router, private dbService:DBService) { }
+  constructor(private activerouter: ActivatedRoute, private router: Router, private apiService: APIService) { }
 
   ngOnInit() {
-    this.dbService.dbState().subscribe((res)=>{
-      if (res){
-        this.dbService.fetchHemograma().subscribe(item=>{
-          this.arregloHemograma = item;
-          this.llenar();
-        })
-      }
-    });
-    this.lineChartMethod();
   }
 
-  ngAfterViewInit() {
-    this.lineChartMethod();
-  }
 //
   llenarFechas(){
-    for(let x of this.arregloHemograma){
-      this.fechas.push(x.fecha)
-    }
-    return true;
   }
 
   llenarValores(){
-    for(let x of this.arregloHemograma){
-      this.valores.push(x.vcm)
-    }
-    return true;
   }
 
   llenarMin(){
-    this.min = Array.from(this.valores).fill(80);
-    return true;
   }
 
   llenarMax(){
-    this.max = Array.from(this.valores).fill(100);
-    return true;
   }
 
   llenar(){
-    if(this.llenarFechas()){
-      if(this.llenarValores()){
-        if(this.llenarMin()){
-          if(this.llenarMax()){
-
-          }
-        }
-      }
-    }
   }
 //
   lineChartMethod() {

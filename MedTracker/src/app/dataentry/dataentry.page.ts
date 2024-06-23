@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dataentry',
@@ -20,13 +20,6 @@ export class DataentryPage implements OnInit {
   processFecha(){
     this.fechaFormateada = this.fecha.split('T')[0];
   }
-  enviarDatos(){
-    let navigationExtras: NavigationExtras ={
-      state: {
-        vcmNew: this.valueVCM,
-        fechaNew: this.fechaFormateada,
-      }
-    }
-    this.router.navigate(['/chart'], navigationExtras)
+  guardarDatos(){
   }
 }
