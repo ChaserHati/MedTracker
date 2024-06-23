@@ -10,41 +10,43 @@ import { APIService } from '../services/api.service';
   styleUrls: ['./chart.page.scss'],
 })
 export class ChartPage implements OnInit {
+  //chart
   @ViewChild('lineCanvas') lineCanvas!: ElementRef;
-
-  arregloHemograma: any = [{
-    fecha: '',
-    vcm: 0
-  }]
-
   private lineChart!: Chart;
-
-  fechas: string[] = [];
-  
+  fechas: string [] = [];
   valores: number[] = [];
-
-  min: number[] = [];
-
-  max: number[] = [];
+  min: number [] = [];
+  max: number [] = [];
+  //API
+  examen: any = {
+    name: "",
+    min: 0,
+    max: 0
+  }
+  resultados: any;
 
   constructor(private activerouter: ActivatedRoute, private router: Router, private apiService: APIService) { }
-
+  //lifecycles
   ngOnInit() {
+  }
+  ionViewWillEnter(){
+    this.getExamen("vcm");
+    this.getResultados();
+  }
+  //API Methods
+  getExamen(name:any){
+    this.apiService.getExamen(name).subscribe((data)=>{
+      this.examen=data;
+    })
+  }
+  getResultados(){
+    this.apiService.getResultados().subscribe((data)=>{
+      this.resultados=data;
+      console.log(data)
+    })
   }
 
 //
-  llenarFechas(){
-  }
-
-  llenarValores(){
-  }
-
-  llenarMin(){
-  }
-
-  llenarMax(){
-  }
-
   llenar(){
   }
 //
