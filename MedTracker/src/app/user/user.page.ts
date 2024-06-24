@@ -8,7 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UserPage implements OnInit {
 
-  username: string = "";
+  public fechnac!: string;
+  fechnacFormateada!: string;
+  username!: string;
   height!: number;
   weight!: number;
 
@@ -21,9 +23,21 @@ export class UserPage implements OnInit {
 }
   
   ngOnInit() {
+    this.username=String(localStorage.getItem('user'));
+    this.height=Number(localStorage.getItem('height'));
+    this.weight=Number(localStorage.getItem('weight'));
+    this.fechnac=String(localStorage.getItem('fechnac'));
+  }
+  processFecha(){
+    this.fechnacFormateada = this.fechnac.split('T')[0];
+  }
+  guardarStorage(){
+    localStorage.setItem('weight',String(this.weight));
+    localStorage.setItem('height',String(this.height));
+    localStorage.setItem('fechnac',this.fechnacFormateada);
   }
   cerrarSesion(){
-    this.username = "";
+    localStorage.clear();
     this.router.navigate(['/']);
   }
 }

@@ -32,14 +32,15 @@
     </ion-item>
     <ion-item>
       <ion-label>Fecha de Nacimiento</ion-label>
-      <ion-datetime-button  datetime="datetime"></ion-datetime-button>
+      <ion-datetime-button  datetime="fechnac"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
-          <ion-datetime id="datetime" presentation="date" locale="es-ES" [firstDayOfWeek]="1" [showDefaultButtons]="true">
+          <ion-datetime id="fechnac" [(ngModel)]="fechnac" presentation="date" locale="es-ES" [firstDayOfWeek]="1" [showDefaultButtons]="true" (ionChange)="processFecha()">
           </ion-datetime>
         </ng-template>
       </ion-modal>
     </ion-item>
+    <ion-button (click)="guardarStorage()">Guardar</ion-button>
     
   <ion-button [routerLink]="['/']" color="warning">Cerrar Sesión</ion-button>
   </div>

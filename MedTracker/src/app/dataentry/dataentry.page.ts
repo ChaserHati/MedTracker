@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { APIService } from '../services/api.service';
 
 @Component({
   selector: 'app-dataentry',
@@ -10,10 +11,14 @@ export class DataentryPage implements OnInit {
   public fecha!: string;
   fechaFormateada!: string;
   valueVCM!: number;
+  resultado={
+    fecha: this.fechaFormateada,
+    valor: this.valueVCM
+  }
 
   tipoExamen!: string;
   
-  constructor(private router: Router) { }
+  constructor(private router: Router, private api: APIService) { }
 
   ngOnInit() {
   }
@@ -21,5 +26,11 @@ export class DataentryPage implements OnInit {
     this.fechaFormateada = this.fecha.split('T')[0];
   }
   guardarDatos(){
+    this.api.createResultado(this.resultado).subscribe(()=>{
+      console.log(this.resultado);
+    },
+  error=>{
+    console.log("Error:"+error)
+  })
   }
 }

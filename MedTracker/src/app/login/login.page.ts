@@ -11,6 +11,9 @@ export class LoginPage implements OnInit {
   constructor(private router: Router) {   }
 
   ngOnInit() {
+    if(localStorage.getItem('user')!=null){
+      this.router.navigate(['/user'])
+    }
   }
 
   enviarDatos(){
@@ -19,6 +22,7 @@ export class LoginPage implements OnInit {
         username: this.username,
       }
     }
+    localStorage.setItem('user', this.username);
     this.router.navigate(['/user'], navigationExtras);
   }
 }

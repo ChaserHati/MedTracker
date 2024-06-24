@@ -11,8 +11,8 @@ export class APIService {
   httpOptions = {
     headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin' :'*'
-    //'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+    'Access-Control-Allow-Origin' :'*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
     })
     }
   // Se establece la base url del API a consumir
@@ -22,6 +22,9 @@ export class APIService {
   //GET 
   getResultados():Observable<any>{ 
     return this.http.get(this.apiURL+'/resultados/').pipe(retry(3));
+  }
+  createResultado(resultado:any):Observable<any>{ 
+    return this.http.post(this.apiURL+'/resultados/',resultado,this.httpOptions).pipe(retry(3));
   }
   //GET Filtrado
   getExamen(name:any):Observable<any>{
