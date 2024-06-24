@@ -26,7 +26,10 @@ export class UserPage implements OnInit {
     this.username=String(localStorage.getItem('user'));
     this.height=Number(localStorage.getItem('height'));
     this.weight=Number(localStorage.getItem('weight'));
-    this.fechnac=String(localStorage.getItem('fechnac'));
+    if(localStorage.getItem('fechnac')!=null){
+      this.fechnac=String(localStorage.getItem('fechnac'));
+    }
+    
   }
   processFecha(){
     this.fechnacFormateada = this.fechnac.split('T')[0];
